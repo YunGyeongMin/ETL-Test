@@ -1,0 +1,29 @@
+주제
+(일 / 요일 / 항공사) 별 평균 지연 시간 조사
+
+1. 시작(ontime)
+
+2. ODS : ontime 테이블 보관
+
+3. 정렬기준
+	공통 : Cancelled = 0(취소된 항공사는 제외)
+	개별 : 일(DayofMonth) , 요일(DayofWeek) , 항공사(UniqueCarrier)
+
+3. select 할 컬럼 : 
+  3-0. 공통 : Cancelled , ArrDelay, DepDelay
+  3-1. 일 : DayofMonth
+  3-2. 요일 : DayofWeek
+  3-3. 항공사 : UniqueCarrier
+
+4. 지연시간(DelayTimer) 수식 : ArrDelay - DepDelay 
+
+5. AVG(ArrDelay - DepDelay) 를 이용해 일 / 요일 / 항공사별 평균 계산 후 ROUND를 이용하여 반올림
+
+6. Ⅰ) 일별 조사 : DayofMonth 내림차순으로 정렬 후 DelayTimer 계산
+   Ⅱ) 요일별 조사 : DayofWeek 내림차순으로 정렬 후 DelayTimer 계산
+   Ⅲ) 항공사별 조사 : UniqueCarrier 정렬 후 DelayTimer 계산
+
+
+
+7. Ⅰ~Ⅲ 를 그래프(일 / 요일 : 꺾은선, 항공사 : 막대그래프)로 시각화
+	- 세 개의 그래프를 하나의 차트에 모두 보이게 함
